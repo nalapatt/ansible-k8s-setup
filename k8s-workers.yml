@@ -15,7 +15,7 @@
   become: yes
   tasks:
     - name: join cluster
-      shell: "{{ hostvars['master'].join_command }} --ignore-preflight-errors all  >> node_joined.txt"
+      shell: "{{ hostvars['172.31.15.14'].join_command }} --ignore-preflight-errors all  >> node_joined.txt"
       args:
         chdir: $HOME
         creates: node_joined.txt
