@@ -2,6 +2,13 @@
   become: yes
   tasks:
 
+   - name: disable firewall service
+     service:
+        name: firewalld
+        state: stopped
+        enabled: false
+        ignore_errors: true
+
    - name: Disable SWAP 
      shell: |
        swapoff -a
@@ -27,6 +34,11 @@
    - name: disable SELinux
      command: setenforce 0
      ignore_errors: true
+
+   - name: disable SELinux on reboot
+     selinux:
+       state: disabled
+       ignore_errors: true
 
    - name: ensure net.bridge.bridge-nf-call-ip6tables is set to 1
      sysctl:

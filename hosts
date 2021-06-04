@@ -1,6 +1,5 @@
-[masters]
-master.example.com
+[master]
+172.31.15.14 ansible_user=master
 
-[workers]
-nodeone.example.com
-nodetwo.example.com
+[worker]
+172.31.5.18 ansible_user=worker
