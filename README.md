@@ -143,7 +143,7 @@ _ sudo systemctl restart sshd
 -  git init
 -   git clone https://github.com/nalapatt/ansible-playbook-k8s-setup.git
 
-- cd ansible-k8s-setup 
+- cd ansible-playbook-k8s-setup 
 - vi hosts
 
 # change the hosts
@@ -173,10 +173,12 @@ esc :wq
 -   if done YEAH!!!
 
 - go into the respective terminals and in root
+- connect back to the terminals
+- 
 - sudo usermod -aG docker master
 -  sudo usermod -aG docker worker
 
-
+# go back to ansible controller
 - vi k8s-master.yml 
 - edit masters to master 
 - change to your ip address of your master in apiserver-address=private ipaddressof master 
@@ -185,6 +187,8 @@ esc :wq
 -  ansible-playbook k8s-master.yml --extra-vars "ansible_sudo_pass=ansible123" 
 -  if alright YEAAAAH!!!
 
+# in the kube master
+- sudo su -
 - kubectl get nodes (should see the master) 
 - if error (localhost:8080 refused connection) then do this is root
 
@@ -193,11 +197,12 @@ esc :wq
 - sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 - y to overwrite config
-- edit the k8s-workers.yaml
+- vi k8s-workers.yml
 -  change the hosts to master and ip address in hostsvars[] 
--  ansible-playbook k8s-workers.yaml --extra-vars "ansible_sudo_pass=ansible123"
+-  ansible-playbook k8s-workers.yml --extra-vars "ansible_sudo_pass=ansible123"
 -   if this is done
 
+# in the kube master
 - kubectl get nodes should show all the nodes
 
 # YEAH YOU are DONE creating the kubernetes cluster
