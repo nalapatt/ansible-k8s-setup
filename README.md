@@ -197,6 +197,7 @@ esc :wq
 - sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 - y to overwrite config
+# back in the ansible controller 
 - vi k8s-workers.yml
 -  change the hosts to master and ip address in hostsvars[] 
 -  ansible-playbook k8s-workers.yml --extra-vars "ansible_sudo_pass=ansible123"
